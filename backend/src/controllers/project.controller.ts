@@ -1,25 +1,25 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-export const createProjectController = (request: Request, response: Response) => {
-    return "createProjectController";
-}
+export const createProjectController = (req: Request, res: Response) => {
+  return 'createProjectController';
+};
 
-export const projectsController = (request: Request, response: Response) => {
-    return "projectsController";
-}
+export const projectsController = (req: Request, res: Response) => {
+  return 'projectsController';
+};
 
-export const projectController = (request: Request, response: Response) => {
-    return "projectController";
-}
+export const projectController = (req: Request, res: Response) => {
+  return 'projectController';
+};
 
-export const editProjectController = (request: Request, response: Response) => {
-    return "editProjectController";
-}
+export const editProjectController = (req: Request, res: Response) => {
+  return 'editProjectController';
+};
 
-export const doneProjectController = (request: Request, response: Response) => {
-    return "doneProjectController";
-}
+export const doneProjectController = (req: Request, res: Response) => {
+  return 'doneProjectController';
+};
 
-export const deleteProjectController = (request: Request, response: Response) => {
-    return "deleteProjectController";
-}
+export const deleteProjectController = (req: Request, res: Response) => {
+  return 'deleteProjectController';
+};

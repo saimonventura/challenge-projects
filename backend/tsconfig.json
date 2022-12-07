@@ -4,6 +4,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "out",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
+import { BadRequest, WeakPassword } from '../utils/constants';
 
-const BadRequest = 'Bad Request';
-const WeakPassword = 'Weak Password';
-const passwordPattern =
+
+export const passwordPattern =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
 export const createUserValidate = (req: Request, res: Response) => {

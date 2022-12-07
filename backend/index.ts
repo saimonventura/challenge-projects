@@ -1,10 +1,10 @@
 import { Server } from './src/server';
-import { loginUserController } from './src/controllers/user.controller';
-import { createProjectController, deleteProjectController, doneProjectController, editProjectController, projectController, projectsController } from './src/controllers/project.controller';
+import { loginUserController } from './src/controllers/user.controller'
+import { createProjectController, deleteProjectController, doneProjectController, editProjectController, projectController, projectsController } from './src/controllers/project.controller'
 
 
 export const server = new Server()
-const { app } = server
+export const { app } = server
 
 app.post("/users", loginUserController)
 
@@ -15,4 +15,6 @@ app.get("/projects/:id", editProjectController)
 app.get("/projects/:id/done", doneProjectController)
 app.get("/projects/:id", deleteProjectController)
 
-server.start();
+if (process.env.NODE_ENV !== 'test') {
+    server.start()
+}

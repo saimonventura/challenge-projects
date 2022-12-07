@@ -1,11 +1,10 @@
 import { PrismaClient, user } from '@prisma/client';
 import { Request, Response } from 'express';
-import { USER_COOKIE_NAME } from '../utils/constants';
+import { InvalidCredentials, USER_COOKIE_NAME } from '../utils/constants';
 import { jwtSign, md5Hash } from '../utils/crypto';
 
 const prisma = new PrismaClient();
 
-const InvalidCredentials = 'Invalid Credentials';
 
 export const createUserService = async (req: Request, res: Response) => {
   req.body.password = md5Hash(req.body.password);

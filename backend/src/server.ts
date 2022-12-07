@@ -1,6 +1,6 @@
-import * as http from 'http';
-import express, { Express } from 'express';
 import bodyParser from 'body-parser';
+import express, { Express } from 'express';
+import * as http from 'http';
 
 export class Server {
   private readonly _app: Express;

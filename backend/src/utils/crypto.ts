@@ -1,5 +1,5 @@
-import { createHash } from 'node:crypto';
 import jwt from 'jsonwebtoken';
+import { createHash } from 'node:crypto';
 
 const JWT_KEY = process.env.JWT_KEY ?? 'secret_key';
 
@@ -12,5 +12,10 @@ export const jwtSign = (value: object): string => {
 };
 
 export const jwtVerify = (token: string): string | jwt.JwtPayload => {
-  return jwt.verify(token, JWT_KEY);
+  try {
+    const decoded = jwt.verify(token, JWT_KEY);
+    return decoded
+  } catch (error) {
+    return { error: 'Invalid token' }
+  }
 };

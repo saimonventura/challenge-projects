@@ -1,21 +1,26 @@
 import { PrismaClient, user } from '@prisma/client';
 import { Request, Response } from 'express';
+
 import { InvalidCredentials, USER_COOKIE_NAME } from '../utils/constants';
 import { jwtSign, md5Hash } from '../utils/crypto';
 
 const prisma = new PrismaClient();
 
-
-export const createUserService = async (req: Request, res: Response) => {
+export const createUserService = async (req: Request) => {
   req.body.password = md5Hash(req.body.password);
 
   const user = await prisma.user.create({ data: req.body });
   console.log({ userCreated: user });
 
-  return { id: user.id, username: user.username, name: user.name };
+  const createdUser: any = { id: user.id, username: user.username, name: user.name }
+  
+  const jwtToken = jwtSign(createdUser);
+  createdUser.token = jwtToken;
+
+  return createdUser;
 };
 
-export const getUserByUsernameService = async (req: Request, res: Response) => {
+export const getUserByUsernameService = async (req: Request) => {
   return await prisma.user.findFirst({
     where: { username: req.body.username },
   });
@@ -36,5 +41,5 @@ export const loginUserService = async (
 
   const jwtToken = jwtSign(user);
 
-  res.cookie(USER_COOKIE_NAME, jwtToken).status(200).json({ token: jwtToken });
+  res.cookie(USER_COOKIE_NAME, jwtToken, { expires: new Date(Date.now() + 60 * 60 * 1000), httpOnly: true }).status(200).json({ token: jwtToken });
 };

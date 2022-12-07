@@ -1,19 +1,16 @@
 import { Server } from './src/server';
-import { loginUserController } from './src/controllers/user.controller'
-import { createProjectController, deleteProjectController, doneProjectController, editProjectController, projectController, projectsController } from './src/controllers/project.controller'
-
+import { usersRoutes } from './src/routes/users.routes';
+import { projectRoutes } from './src/routes/project.routes';
+import { projectsRoutes } from './src/routes/projects.routes';
 
 export const server = new Server()
 export const { app } = server
 
-app.post("/users", loginUserController)
+app.use("/users", usersRoutes)
 
-app.post("/project", createProjectController)
-app.get("/projects", projectsController)
-app.get("/project", projectController)
-app.get("/projects/:id", editProjectController)
-app.get("/projects/:id/done", doneProjectController)
-app.get("/projects/:id", deleteProjectController)
+app.use("/project", projectRoutes)
+
+app.use("/projects", projectsRoutes)
 
 if (process.env.NODE_ENV !== 'test') {
     server.start()

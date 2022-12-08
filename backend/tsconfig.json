@@ -4,12 +4,20 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "out",
-    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ]
   }
 }

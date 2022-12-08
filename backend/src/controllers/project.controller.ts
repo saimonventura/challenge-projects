@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createProjectService } from '../services/project.service';
+import { createProjectService, userProjectsService } from '../services/project.service';
 import { catchResponseMessage } from '../utils/controller.error';
 import { createProjectValidate } from '../validations/project.validation';
 
@@ -17,8 +17,10 @@ export const createProjectController = async (req: Request, res: Response) => {
   }
 };
 
-export const projectsController = (req: Request, res: Response) => {
-  return 'projectsController';
+export const projectsController = async (req: Request, res: Response) => {
+  const projects = await userProjectsService(req);
+
+  res.json(projects);
 };
 
 export const projectController = (req: Request, res: Response) => {

@@ -6,10 +6,11 @@ import {
   editProjectController,
   projectsController,
 } from '../controllers/project.controller';
+import { isAuthenticatedMiddleware } from '../middlewares/isAuthenticated.middleware';
 
 const projectsRoutes = Router();
 
-projectsRoutes.get('/', projectsController);
+projectsRoutes.get('/', isAuthenticatedMiddleware, projectsController);
 projectsRoutes.put('/:id', editProjectController);
 projectsRoutes.patch('/:id/done', doneProjectController);
 projectsRoutes.delete('/:id', deleteProjectController);

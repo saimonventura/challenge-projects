@@ -37,11 +37,32 @@ export const editProjectService = async (req: Request) => {
   if (req.body.cost) data.cost = req.body.cost;
   if (req.body.deadline) data.deadline = req.body.deadline;
 
-
-  const project = await prisma.project.update(
+  const projectUpdated = await prisma.project.update(
     { where: { project_id: req.params.id as string }, data }
   );
-  console.log({ projectUpdated: project });
+  console.log({ projectUpdated });
 
-  return project;
+  return projectUpdated;
+};
+
+export const doneProjectService = async (project_id: string) => {
+  const data = {
+    done: true,
+    updated_at: new Date().toISOString()
+  }
+  const projectDone = await prisma.project.update(
+    { where: { project_id }, data }
+  );
+  console.log({ projectDone });
+
+  return projectDone;
+};
+
+export const deleteProjectService = async (project_id: string) => {
+  const projectDeleted = await prisma.project.delete(
+    { where: { project_id } }
+  );
+  console.log({ projectDeleted });
+
+  return projectDeleted;
 };

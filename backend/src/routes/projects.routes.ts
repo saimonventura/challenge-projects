@@ -7,12 +7,13 @@ import {
   projectsController,
 } from '../controllers/project.controller';
 import { isAuthenticatedMiddleware } from '../middlewares/isAuthenticated.middleware';
+import { projectExistsAndItIsMineMiddleware } from '../middlewares/projectExistsAndItIsMine.middleware';
 
 const projectsRoutes = Router();
 
 projectsRoutes.get('/', isAuthenticatedMiddleware, projectsController);
-projectsRoutes.put('/:id', isAuthenticatedMiddleware, editProjectController);
-projectsRoutes.patch('/:id/done', doneProjectController);
-projectsRoutes.delete('/:id', deleteProjectController);
+projectsRoutes.put('/:id', isAuthenticatedMiddleware, projectExistsAndItIsMineMiddleware, editProjectController);
+projectsRoutes.patch('/:id/done', isAuthenticatedMiddleware, projectExistsAndItIsMineMiddleware, doneProjectController);
+projectsRoutes.delete('/:id', isAuthenticatedMiddleware, projectExistsAndItIsMineMiddleware, deleteProjectController);
 
 export { projectsRoutes };

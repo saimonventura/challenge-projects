@@ -4,3 +4,5 @@ export const BadRequest = 'Bad Request';
 export const WeakPassword = 'Weak Password';
 export const InvalidCredentials = 'Invalid Credentials';
 export const MustBeLogged = 'Must Be Logged';
+export const Unauthorized = 'Unauthorized';
+export const ProjectNotFound = 'Project Not Found';

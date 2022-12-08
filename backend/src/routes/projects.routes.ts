@@ -11,7 +11,7 @@ import { isAuthenticatedMiddleware } from '../middlewares/isAuthenticated.middle
 const projectsRoutes = Router();
 
 projectsRoutes.get('/', isAuthenticatedMiddleware, projectsController);
-projectsRoutes.put('/:id', editProjectController);
+projectsRoutes.put('/:id', isAuthenticatedMiddleware, editProjectController);
 projectsRoutes.patch('/:id/done', doneProjectController);
 projectsRoutes.delete('/:id', deleteProjectController);
 

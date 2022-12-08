@@ -11,26 +11,37 @@ export const createProjectService = async (req: Request) => {
   return project;
 };
 
-export const userProjectsService = async (req: Request) => {
+export const userProjectsService = async (username: string) => {
   const projects = await prisma.project.findMany({
-    where: {
-      user: {
-        username: req.body.username
-      }
-    },
+    where: { user: { username } },
   });
 
   return projects;
 }
 
-export const projectService = async (req: Request) => {
+export const projectByIdService = async (project_id: string) => {
+  console.log({ project_id })
   const project = await prisma.project.findFirst({
-    where: {
-      project_id: {
-        equals: req.params.id
-      }
-    },
+    where: { project_id: { equals: project_id } },
   });
 
   return project;
 }
+
+export const editProjectService = async (req: Request) => {
+  const data: { [key: string]: string | Date } = {
+    updated_at: new Date().toISOString()
+  }
+  if (req.body.title) data.title = req.body.title;
+  if (req.body.zip_code) data.zip_code = req.body.zip_code;
+  if (req.body.cost) data.cost = req.body.cost;
+  if (req.body.deadline) data.deadline = req.body.deadline;
+
+
+  const project = await prisma.project.update(
+    { where: { project_id: req.params.id as string }, data }
+  );
+  console.log({ projectUpdated: project });
+
+  return project;
+};

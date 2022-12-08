@@ -9,7 +9,7 @@ export const isAuthenticatedService = (req: Request): boolean => {
     if (decodedToken.username) {
         req.headers.username = decodedToken.username
         req.headers.name = decodedToken.name || ''
-        req.headers.id = decodedToken.id
+        req.headers.user_id = decodedToken.user_id
         return true
     }
 

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { createProjectService, userProjectsService } from '../services/project.service';
+import { getCityUfFromPostalCodeService } from '../services/getCityUfFromPostalCode.service';
+import { createProjectService, projectService, userProjectsService } from '../services/project.service';
 import { catchResponseMessage } from '../utils/controller.error';
 import { createProjectValidate } from '../validations/project.validation';
 
@@ -23,8 +24,15 @@ export const projectsController = async (req: Request, res: Response) => {
   res.json(projects);
 };
 
-export const projectController = (req: Request, res: Response) => {
-  return 'projectController';
+export const projectController = async (req: Request, res: Response) => {
+  const project = await projectService(req);
+
+  if (!project) return res.status(404).json({ error: 'Project not found' })
+
+  const { city, uf } = await getCityUfFromPostalCodeService(project.zip_code);
+  project.zip_code = `${city} / ${uf}`
+
+  res.json(project);
 };
 
 export const editProjectController = (req: Request, res: Response) => {

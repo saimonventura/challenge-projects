@@ -22,3 +22,15 @@ export const userProjectsService = async (req: Request) => {
 
   return projects;
 }
+
+export const projectService = async (req: Request) => {
+  const project = await prisma.project.findFirst({
+    where: {
+      project_id: {
+        equals: req.params.id
+      }
+    },
+  });
+
+  return project;
+}

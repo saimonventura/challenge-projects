@@ -4,7 +4,7 @@ import { isAuthenticatedService } from "./isAuthenticated.service"
 describe('isAuthenticatedService ', () => {
     it('should return true if user is authenticated', () => {
         const user = {
-            id: 1,
+            user_id: 1,
             username: 'username',
             name: 'name',
         }
@@ -17,7 +17,7 @@ describe('isAuthenticatedService ', () => {
         expect(res).toBe(true)
         expect(req.headers.username).toBe(user.username)
         expect(req.headers.name).toBe(user.name)
-        expect(req.headers.id).toBe(user.id)
+        expect(req.headers.user_id).toBe(user.user_id)
     })
 
     it('should return false if user is not authenticated', () => {
@@ -30,7 +30,7 @@ describe('isAuthenticatedService ', () => {
         expect(res).toBe(false)
         expect(req.headers.username).toBe(undefined)
         expect(req.headers.name).toBe(undefined)
-        expect(req.headers.id).toBe(undefined)
+        expect(req.headers.user_id).toBe(undefined)
 
     })
 })

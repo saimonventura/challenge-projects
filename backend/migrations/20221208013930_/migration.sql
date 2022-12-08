@@ -1,18 +1,18 @@
 -- CreateTable
 CREATE TABLE "user" (
-    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "user_pkey" PRIMARY KEY ("user_id")
 );
 
 -- CreateTable
 CREATE TABLE "project" (
-    "id" TEXT NOT NULL,
+    "project_id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "zip_code" TEXT NOT NULL DEFAULT '',
     "cost" DOUBLE PRECISION NOT NULL DEFAULT 0,
@@ -22,7 +22,7 @@ CREATE TABLE "project" (
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "username" TEXT NOT NULL,
 
-    CONSTRAINT "project_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "project_pkey" PRIMARY KEY ("project_id")
 );
 
 -- CreateIndex

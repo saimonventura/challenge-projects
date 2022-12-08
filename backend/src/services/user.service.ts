@@ -8,11 +8,12 @@ const prisma = new PrismaClient();
 
 export const createUserService = async (req: Request) => {
   req.body.password = md5Hash(req.body.password);
+  if(!req.body.name) req.body.name = req.body.username;
 
   const user = await prisma.user.create({ data: req.body });
   console.log({ userCreated: user });
 
-  const createdUser: any = { id: user.id, username: user.username, name: user.name }
+  const createdUser: any = { user_id: user.user_id, username: user.username, name: user.name }
   
   const jwtToken = jwtSign(createdUser);
   createdUser.token = jwtToken;

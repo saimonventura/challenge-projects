@@ -9,6 +9,6 @@ import { isAuthenticatedMiddleware } from '../middlewares/isAuthenticated.middle
 const projectRoutes = Router();
 
 projectRoutes.post('/', isAuthenticatedMiddleware, createProjectController);
-projectRoutes.get('/', projectController);
+projectRoutes.get('/', isAuthenticatedMiddleware, projectController);
 
 export { projectRoutes };

@@ -9,7 +9,7 @@ services:
       - 5432:5432
 
     env_file:
-      - ./backend/.env
+      - ./express/.env
 
     volumes:
       - ./db-data/:/var/lib/postgresql/data/

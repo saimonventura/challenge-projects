@@ -11,12 +11,28 @@
 			"item": [
 				{
 					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set token after login\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if (jsonData.token) {\r",
+									"        pm.collectionVariables.set(\"token\", jsonData.token);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"username\": \"{{$randomUserName}}\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Saimon\",\r\n    \"username\": \"saimon\",\r\n    \"password\": \"Mudar#123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,8 +65,8 @@
 								"exec": [
 									"pm.test(\"Set projectId after create\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    if (jsonData.id) {\r",
-									"        pm.collectionVariables.set(\"projectId\", jsonData.id);\r",
+									"    if (jsonData.project_id) {\r",
+									"        pm.collectionVariables.set(\"projectId\", jsonData.project_id);\r",
 									"    }\r",
 									"});"
 								],
@@ -60,10 +76,16 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cost\": {{$randomInt}},\r\n    \"deadline\": \"{{$randomDateFuture}}\",\r\n    \"title\": \"{{$randomCompanyName}}\",\r\n    \"zip_code\": \"88010400\"\r\n}",
+							"raw": "{\r\n    \"cost\": {{$randomInt}},\r\n    \"deadline\": \"2022-12-25T12:34:56.430Z\",\r\n    \"title\": \"{{$randomCompanyName}}\",\r\n    \"zip_code\": \"88010400\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -86,7 +108,13 @@
 					"name": "Projects",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{url}}/projects",
 							"host": [
@@ -103,14 +131,26 @@
 					"name": "Project",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{url}}/project",
+							"raw": "{{url}}/project?id={{projectId}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"project"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{projectId}}"
+								}
 							]
 						}
 					},
@@ -120,10 +160,16 @@
 					"name": "Edit Project",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cost\": {{$randomInt}},\r\n    \"deadline\": \"{{$randomDateFuture}}\",\r\n    \"title\": \"{{$randomCompanyName}}\",\r\n    \"zip_code\": \"88010400\"\r\n}",
+							"raw": "{\r\n    \"cost\": {{$randomInt}},\r\n    \"deadline\": \"2022-12-25T12:34:56.430Z\",\r\n    \"title\": \"{{$randomCompanyName}}\",\r\n    \"zip_code\": \"88010400\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,7 +193,13 @@
 					"name": "Set Project Done",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{url}}/projects/{{projectId}}/done",
 							"host": [
@@ -169,7 +221,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.collectionVariables.unset(\"projectId\");"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -177,7 +229,13 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{url}}/projects/{{projectId}}",
 							"host": [
@@ -222,6 +280,11 @@
 		},
 		{
 			"key": "projectId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
 			"value": "",
 			"type": "string"
 		}

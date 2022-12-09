@@ -1,4 +1,5 @@
 import { FormEvent, useCallback } from "react";
+import { buttonStyle, formStyle, inputStyle } from "shared/style/className";
 import { useProject } from "../context/project.context";
 import { ICreateUpdateProject, IProject } from "../type/project.type";
 
@@ -20,16 +21,16 @@ export function EditProjectComponent({ project }: { project: IProject }) {
 
     return (
         <div>
-            <form onSubmit={submitHandler} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <form onSubmit={submitHandler} className={formStyle}>
                 <label htmlFor="title">Title</label>
-                <input required defaultValue={project?.title} type="text" name="title" />
+                <input className={inputStyle} required defaultValue={project?.title} type="text" name="title" />
                 <label htmlFor="deadline">Deadline</label>
-                <input required defaultValue={project.deadline} type="date" name="deadline" />
+                <input className={inputStyle} required defaultValue={project.deadline} type="date" name="deadline" />
                 <label htmlFor="zip_code">Zip Code</label>
-                <input required defaultValue={project?.zip_code} type="text" name="zipCode" />
+                <input className={inputStyle} required defaultValue={project?.zip_code} type="text" name="zipCode" />
                 <label htmlFor="cost">Cost</label>
-                <input required defaultValue={project?.cost} type="number" step="0.01" name="cost" />
-                <button type="submit">Edit</button>
+                <input className={inputStyle} required defaultValue={project?.cost} type="number" step="0.01" name="cost" />
+                <button type="submit" className={buttonStyle}>Edit</button>
             </form>
         </div>
     );

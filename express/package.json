@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "npx prisma generate && nodemon --config nodemon.json src/index.ts",
     "lint": "eslint src --fix --cache",
     "test": "jest"
   },

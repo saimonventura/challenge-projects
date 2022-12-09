@@ -1,6 +1,8 @@
 import { useUser } from "modules/user/context/user.context";
 import { ILoginUser } from "modules/user/type/user.type";
 import { FormEvent, useCallback } from "react";
+import { buttonStyle, formStyle, inputStyle, subTitleStyle } from "shared/style/className";
+
 
 export function LoginComponent() {
     const { loginUser } = useUser();
@@ -14,20 +16,22 @@ export function LoginComponent() {
     }, [])
 
     return (
-        <form onSubmit={submitHandler} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <form onSubmit={submitHandler} className={formStyle}>
+            <h2 className={subTitleStyle}>Create or Login</h2>
             <label>Name</label>
-            <input defaultValue="Saimon" type="text" name="name" />
+            <input placeholder="Name" className={inputStyle} defaultValue="Saimon" type="text" name="name" />
             <label>*User Name</label>
-            <input defaultValue="saimon" type="text" required name="username" />
+            <input placeholder="User Name" className={inputStyle} defaultValue="saimon" type="text" required name="username" />
             <label>*Password</label>
-            <input
+            <input placeholder="Password"
+                className={inputStyle}
                 defaultValue="Mudar#123"
                 type="password"
                 required
                 name="password"
                 pattern={'(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}'}
             />
-            <button type="submit">Enter</button>
+            <button className={buttonStyle} type="submit">Enter</button>
         </form>
     );
 }

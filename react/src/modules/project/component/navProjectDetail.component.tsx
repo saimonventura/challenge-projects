@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { buttonStyle, navStyle } from "shared/style/className";
 import { useProject } from "../context/project.context";
+
 
 export default function NavProjectDetailComponent() {
     const router = useRouter();
@@ -8,16 +10,16 @@ export default function NavProjectDetailComponent() {
     const { fetchProject, project, deleteProject, setProjectDone } = useProject();
 
     return (
-        <nav style={{ display: 'flex', gap: "10px" }}>
-            <Link href="/">Home</Link>
-            <Link href="/project/create">Create</Link>
+        <nav className={navStyle}>
+            <Link className={buttonStyle} href="/">Home</Link>
+            <Link className={buttonStyle} href="/project/create">Create</Link>
             {project?.project_id &&
                 <>
-                    <Link href={`/project/edit/${project.project_id}`}>Edit</Link>
-                    <button onClick={() => setProjectDone(project.project_id).then(() =>
+                    <Link className={buttonStyle} href={`/project/edit/${project.project_id}`}>Edit</Link>
+                    <button className={buttonStyle} onClick={() => setProjectDone(project.project_id).then(() =>
                         fetchProject(projectId as string)
                     )}>done</button>
-                    <button onClick={() => deleteProject(project.project_id).then(() => router.replace('/'))}>delete</button>
+                    <button className={buttonStyle} onClick={() => deleteProject(project.project_id).then(() => router.replace('/'))}>delete</button>
                 </>
             }
         </nav>

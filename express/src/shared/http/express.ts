@@ -18,7 +18,7 @@ export class Server {
   constructor() {
     this._app = express();
 
-    this._app.set('port', process.env.PORT || 3000);
+    this._app.set('port', process.env.PORT || 3001);
 
     this.configureMiddleware();
   }

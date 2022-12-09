@@ -1,3 +1,4 @@
+import NavProjectListComponent from 'modules/project/component/navProjectList.component';
 import { ProjectList } from 'modules/project/component/projectList.component';
 import { useProject } from 'modules/project/context/project.context';
 import { UserGuard } from 'modules/user/component/guard/user.guard';
@@ -16,9 +17,8 @@ export default function Project() {
   return (
     <UserGuard>
       <>
-        <nav>
-          <Link href="/project/create">Create</Link>
-        </nav>
+        <NavProjectListComponent />
+
         <ProjectList />
       </>
     </UserGuard>

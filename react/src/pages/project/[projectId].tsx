@@ -5,6 +5,7 @@ import { UserGuard } from "modules/user/component/guard/user.guard";
 import { useUser } from "modules/user/context/user.context";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { subTitleStyle } from "shared/style/className";
 
 export default function ProjectDetailPage() {
     const { userToken } = useUser();
@@ -20,8 +21,8 @@ export default function ProjectDetailPage() {
         <UserGuard>
             <>
                 <NavProjectDetailComponent />
-                <h2>Project Page</h2>
-                {project && <ProjectDetailComponent project={project} />}
+                <h2 className={subTitleStyle}>Project Page</h2>
+                {project && <ProjectDetailComponent />}
             </>
         </UserGuard>
     );

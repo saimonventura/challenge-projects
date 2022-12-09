@@ -1,28 +1,22 @@
 import Head from 'next/head';
+import { wrapperStyle } from 'shared/style/className';
 
 export default function BaseTemplate({ children }: { children: React.ReactNode }) {
     return (
         <div
-            style={{
-                margin: 0,
-                padding: 0,
-                display: 'flex',
-                justifyContent: 'center',
-            }}
+            className={wrapperStyle}
         >
             <Head>
                 <title>Saimon Projects</title>
                 <meta name="description" content="Saimon Projects" />
             </Head>
 
-            <main>
-                <h1>Saimon Projects</h1>
-
+            <main className='p-2 bg-slate-200 m-2 rounded-md border-2 border-slate-400'>
                 {children}
             </main>
 
-            <footer style={{ position: 'fixed', bottom: 10, right: 20 }}>
-                Created by Saimon Ventura
+            <footer className="text-slate-300 fixed bottom-1 right-1" >
+                🤖 Created by Saimon Ventura 🤖
             </footer>
         </div>
     );

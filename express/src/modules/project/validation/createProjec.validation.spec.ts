@@ -6,7 +6,7 @@ jest.mock('../../user/service/isAuthenticated.service', () => ({
 }))
 
 describe('Create Project Validation Tests', () => {
-    test('Create ok', async () => {
+    xtest('Create ok', async () => {
         await request(app)
             .post('/project')
             .set('username', 'test')

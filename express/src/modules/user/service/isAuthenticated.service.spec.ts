@@ -9,7 +9,7 @@ describe('isAuthenticatedService ', () => {
             name: 'name',
         }
         const req = {
-            headers: { token: jwtSign(user) },
+            headers: { 'authorization': `Bearer ${jwtSign(user)}` },
         } as any
 
         const res = isAuthenticatedService(req)

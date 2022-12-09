@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { jwtVerify } from '../../../shared/utils/crypto';
 
 export const isAuthenticatedService = (req: Request): boolean => {
-    const token = String(req.headers.token)
+    const token = String(req.headers.authorization).split('Bearer ')[1]
     const decodedToken = jwtVerify(token) as user
 
     if (decodedToken.username) {

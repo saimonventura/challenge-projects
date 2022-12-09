@@ -2,6 +2,7 @@ import { ProjectList } from 'components/project/projectList.component';
 import { useProject } from 'context/project.context';
 import { useUser } from 'context/user.context';
 import { UserGuard } from 'guard/user.guard';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Project() {
@@ -14,7 +15,12 @@ export default function Project() {
 
   return (
     <UserGuard>
-      <ProjectList />
+      <>
+        <nav>
+          <Link href="/project/create">Create</Link>
+        </nav>
+        <ProjectList />
+      </>
     </UserGuard>
   );
 }

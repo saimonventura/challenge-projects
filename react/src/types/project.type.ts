@@ -5,16 +5,17 @@ export type IProjectContext = {
     fetchProject: (projectId: string) => void;
     createProject: (projectData: ICreateProject) => void;
     editProject: (projectId: string, editedProjectData: ICreateProject) => void;
-    setProjectDone: (projectId: string) => void;
-    deleteProject: (projectId: string) => void;
+    setProjectDone: (projectId: string) => Promise<void>;
+    deleteProject: (projectId: string) => Promise<void>;
 };
 
 export type IProject = {
     project_id: string;
     title: string;
-    deadline: Date;
+    deadline: string;
     zip_code: string;
     cost: number;
+    done: boolean;
     created_at?: string;
     updated_at?: string;
     username: string;
@@ -22,7 +23,7 @@ export type IProject = {
 
 export type ICreateProject = {
     title: string;
-    zip_code: string;
-    deadline: Date;
+    zipCode: string;
+    deadline: string;
     cost: number;
 }

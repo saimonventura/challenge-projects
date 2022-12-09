@@ -1,11 +1,10 @@
-import { prismaClient } from '../../../shared/orm/prisma';
-
-
+import { prismaClient } from "../../../shared/orm/prisma";
 
 
 export const projectByIdService = async (project_id: string) => {
-  console.log({ project_id });
-  const project = await prismaClient.project.findFirst({
+  if(!project_id) return null;
+  
+  const project = await prismaClient.project.findFirstOrThrow({
     where: { project_id: { equals: project_id } },
   });
 

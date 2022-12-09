@@ -18,6 +18,7 @@ function ProjectProvider({ children }: { children: ReactNode }) {
     }, [])
 
     const fetchProject = useCallback((projectId: string) => {
+        setProject(undefined);
         getProjectService(projectId).then(setProject)
     }, [])
 
@@ -29,12 +30,13 @@ function ProjectProvider({ children }: { children: ReactNode }) {
         editProjectService(projectId, projectData).then(fetchProjects)
     }, [fetchProjects])
 
-    const setProjectDone = useCallback((projectId: string) => {
-        setProjectDoneService(projectId).then(fetchProjects)
+    const setProjectDone = useCallback(async (projectId: string) => {
+        await setProjectDoneService(projectId).then(fetchProjects)
     }, [fetchProjects])
 
-    const deleteProject = useCallback((projectId: string) => {
-        deleteProjectService(projectId).then(fetchProjects)
+    const deleteProject = useCallback(async (projectId: string) => {
+        confirm('Are you sure you want to delete this project?') &&
+            await deleteProjectService(projectId).then(fetchProjects)
     }, [fetchProjects])
 
     return <ProjectContext.Provider value={{

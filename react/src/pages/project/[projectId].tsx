@@ -1,8 +1,8 @@
-import NavProjectDetailComponent from "components/project/navProjectDetail.component";
-import { ProjectDetailComponent } from "components/project/projectDetail.component";
-import { useProject } from "context/project.context";
-import { useUser } from "context/user.context";
-import { UserGuard } from "guard/user.guard";
+import NavProjectDetailComponent from "modules/project/component/navProjectDetail.component";
+import { ProjectDetailComponent } from "modules/project/component/projectDetail.component";
+import { useProject } from "modules/project/context/project.context";
+import { UserGuard } from "modules/user/component/guard/user.guard";
+import { useUser } from "modules/user/context/user.context";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 

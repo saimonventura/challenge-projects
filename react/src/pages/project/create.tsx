@@ -1,6 +1,6 @@
-import { CreateProjectComponent } from 'components/project/createProject.component';
-import NavCreateProjectComponent from 'components/project/navCreateProject.component';
-import { UserGuard } from 'guard/user.guard';
+import { CreateProjectComponent } from "modules/project/component/createProject.component";
+import NavCreateProjectComponent from "modules/project/component/navCreateProject.component";
+import { UserGuard } from "modules/user/component/guard/user.guard";
 
 export default function Project() {
     return (

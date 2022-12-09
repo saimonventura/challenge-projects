@@ -1,7 +1,7 @@
-import { ProjectList } from 'components/project/projectList.component';
-import { useProject } from 'context/project.context';
-import { useUser } from 'context/user.context';
-import { UserGuard } from 'guard/user.guard';
+import { ProjectList } from 'modules/project/component/projectList.component';
+import { useProject } from 'modules/project/context/project.context';
+import { UserGuard } from 'modules/user/component/guard/user.guard';
+import { useUser } from 'modules/user/context/user.context';
 import Link from 'next/link';
 import { useEffect } from 'react';
 

@@ -1,9 +1,8 @@
-import { EditProjectComponent } from "components/project/editProject.component";
-import NavEditProjectComponent from "components/project/navEditProject.component";
-import { useProject } from "context/project.context";
-import { useUser } from "context/user.context";
-import { UserGuard } from "guard/user.guard";
-import Link from "next/link";
+import { EditProjectComponent } from "modules/project/component/editProject.component";
+import NavEditProjectComponent from "modules/project/component/navEditProject.component";
+import { useProject } from "modules/project/context/project.context";
+import { UserGuard } from "modules/user/component/guard/user.guard";
+import { useUser } from "modules/user/context/user.context";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 

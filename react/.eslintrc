@@ -1,0 +1,91 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+    "settings": {
+        "next": {
+            "rootDir": "packages/react/"
+        }
+    },
+    "extends": [
+        "next/core-web-vitals",
+        "prettier",
+        "standard-with-typescript",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "next"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "jest",
+        "prettier",
+        "eslint-plugin-import-helpers"
+    ],
+    "ignorePatterns": [
+        "**/*.spec.ts"
+    ],
+    "rules": {
+        "import/no-dynamic-require": 0,
+        "global-require": 0,
+        "no-underscore-dangle": 0,
+        "no-await-in-loop": 0,
+        "no-restricted-syntax": 0,
+        "no-return-await": 0,
+        "no-console": 0,
+        "@typescript-eslint/prefer-nullish-coalescing": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "no-useless-escape": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "singleQuote": true,
+                "printWidth": 80,
+                "tabWidth": 2,
+                "endOfLine": "lf",
+                "arrowParens": "always"
+            }
+        ],
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": true
+            }
+        ],
+        "import-helpers/order-imports": [
+            "warn",
+            {
+                "newlinesBetween": "always",
+                "groups": [
+                    "module",
+                    "/^src/",
+                    [
+                        "parent",
+                        "sibling",
+                        "index"
+                    ]
+                ],
+                "alphabetize": {
+                    "order": "asc",
+                    "ignoreCase": true
+                }
+            }
+        ]
+    }
+}
